@@ -10,7 +10,8 @@ function countChar(str, char) {
 }
 
 countBs = function (str) {
- return countChar(str, "B");
+ var char = "B";
+ return countChar(str, char);
 };
 console.log(countBs("BBC"));
 // → 2
