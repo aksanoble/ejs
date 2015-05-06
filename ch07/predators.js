@@ -1,4 +1,4 @@
-//Predators. First Attempt. Not stable ecosystem
+//Pchredators. First Attempt. Not stable ecosystem
 function SmartPlantEater() {
   this.energy = 20;
 }

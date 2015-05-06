@@ -1,0 +1,46 @@
+<!doctype html>
+
+<body>
+<style>
+  /* Defines a cleaner look for tables */
+  table  { border-collapse: collapse; }
+  td, th { border: 1px solid black; padding: 3px 8px; }
+  th     { text-align: left; }
+  td:nth-of-type(3n-1) { text-align: right; }
+</style>
+
+<script>
+var MOUNTAINS = [
+  {name: "Kilimanjaro", height: 5895, country: "Tanzania"},
+  {name: "Everest", height: 8848, country: "Nepal"},
+  {name: "Mount Fuji", height: 3776, country: "Japan"},
+  {name: "Mont Blanc", height: 4808, country: "Italy/France"},
+  {name: "Vaalserberg", height: 323, country: "Netherlands"},
+  {name: "Denali", height: 6168, country: "United States"},
+  {name: "Popocatepetl", height: 5465, country: "Mexico"}
+];
+ function buildTable(data) {
+    // Your code here.
+    var tbl = document.createElement("table");
+    var tRows = Object.keys(data[0]);
+    tRows.forEach(function(col) {
+      var node = document.createElement("th");
+      node.appendChild(document.createTextNode(col));
+      tbl.appendChild(node);
+    });
+
+   data.forEach(function(row) {
+      var tRow = document.createElement("tr");
+     tRows.forEach(function(key){
+       var tData = document.createElement("td");
+       tData.appendChild(document.createTextNode(row[key]));
+       tRow.appendChild(tData);
+     })
+      tbl.appendChild(tRow);
+    });
+   return tbl;
+  }
+
+document.body.appendChild(buildTable(MOUNTAINS));
+</script>
+</body>
