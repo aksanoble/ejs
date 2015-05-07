@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+<body>
+<input type="text">
+
+<script>
+  var field = document.querySelector("input");
+  // Censoring Keyboard
+  var forbiddenChar = ["q","w","x","Q","W","X"];
+  field.addEventListener("keypress", function(event) {
+    if (forbiddenChar.indexOf(String.fromCharCode(event.charCode)) != -1)
+    event.preventDefault();
+  });
+</script>
+</body>
+</html>
