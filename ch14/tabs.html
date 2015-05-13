@@ -1,0 +1,40 @@
+<body>
+<div id="wrapper">
+  <div data-tabname="one">Tab one</div>
+  <div data-tabname="two">Tab two</div>
+  <div data-tabname="three">Tab three</div>
+</div>
+</body>
+<script>
+  NodeList.prototype.forEach = Array.prototype.forEach;
+  function asTabs(node) {
+    // Your code here.
+    var tabs = [];
+   node.childNodes.forEach(function(nde) {
+      if (nde.nodeName == '#text')
+        return null;
+     tabs.push(nde);
+   });
+    tabs.forEach(function(tab, j) {
+      var btn = document.createElement('button');
+      var textNode = document.createTextNode(tab.textContent);
+      btn.appendChild(textNode);
+      document.body.insertBefore(btn, node);
+      btn.addEventListener('click', function(){selectTab(j)})
+   })
+
+   function selectTab(e) {
+     tabs.forEach(function(tab, i){
+       if(i == e) {
+         tab.style.display = '';
+         document.querySelector('body').childNodes[++i].style.background = 'orange';
+       }
+       else tab.style.display = 'none';
+       document.querySelector('body').childNodes[++i].style.background = '';
+     })
+
+   }
+    selectTab(0);
+  }
+  asTabs(document.querySelector("#wrapper"));
+</script>
