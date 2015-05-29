@@ -1,0 +1,43 @@
+<!doctype html>
+
+<body>
+
+  <input type="text" id="field">
+  <div id="suggestions" style="cursor: pointer"></div>
+
+  <script>
+// Builds up an array with global variable names, like
+// 'alert', 'document', and 'scrollTo'
+var terms = [];
+for (var name in window)
+  terms.push(name);
+// Your code here.
+
+function updateSuggestions(termsArray) {
+  termsArray.forEach(function(name) {
+    var div = document.createElement('div');
+    div.addEventListener('click', function() {
+      document.querySelector("#field").value = div.textContent
+    });
+
+    div.textContent = name;
+    document.querySelector("#suggestions").appendChild(div);
+  })
+}
+updateSuggestions(terms);
+document.querySelector("#field").addEventListener('input', findSuggestions)
+
+function findSuggestions() {
+  var val = document.querySelector("#field").value
+  var filter = [];
+  terms.forEach(function(term) {
+    if (term.indexOf(val, 0) > -1)
+      filter.push(term);
+  })
+  document.querySelector('#suggestions').textContent = "";
+  updateSuggestions(filter);
+}
+  </script>
+
+
+</body>
